@@ -26,6 +26,8 @@ import numpy as np
 
 import csv
 
+import pathlib
+
 _CITATION = """
 @inproceedings{mostafazadeh-etal-2016-corpus,
     title = "A Corpus and Cloze Evaluation for Deeper Understanding of Commonsense Stories",
@@ -51,7 +53,7 @@ _CITATION = """
 _DESCRIPTION = """
 """
 
-_URL = "https://drive.google.com/uc?export=download&id=1xXuy_7XWzgiwS4tYdclKizvmg_MZ-LLX"
+_PATH = "dataset/rocstory/"
 
 _SENTENCES = "sentences"
 _SHUFFLED_SENTENCES = "shuffled_sentences"
@@ -81,8 +83,7 @@ class ROCOrdering(datasets.GeneratorBasedBuilder):
 
     def _split_generators(self, dl_manager):
         """Returns SplitGenerators."""
-        data_path = dl_manager.download_and_extract(_URL)
-
+        data_path = os.path.join(pathlib.Path().absolute(), _PATH)
         return [
             datasets.SplitGenerator(
                 name=datasets.Split.TRAIN,

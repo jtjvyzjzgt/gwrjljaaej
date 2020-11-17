@@ -26,13 +26,15 @@ import numpy as np
 
 from statistics import mean
 
+import pathlib
+
 _CITATION = """
 """
 
 _DESCRIPTION = """
 Dataset for sentence ordering using introduction from the best wikipedia articles."""
 
-_URL = "https://drive.google.com/uc?export=download&id=13scI5IOJgsL2mqDQVgaYgOfAr-37gZ3A"
+_PATH = "dataset/best_wikipedia/"
 
 _SENTENCES = "sentences"
 _SHUFFLED_SENTENCES = "shuffled_sentences"
@@ -62,8 +64,7 @@ class BestWikipediaOrdering(datasets.GeneratorBasedBuilder):
 
     def _split_generators(self, dl_manager):
         """Returns SplitGenerators."""
-        data_path = dl_manager.download_and_extract(_URL)
-
+        data_path = os.path.join(pathlib.Path().absolute(), _PATH)
         return [
             datasets.SplitGenerator(
                 name=datasets.Split.TRAIN,

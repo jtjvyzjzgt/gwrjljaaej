@@ -26,6 +26,8 @@ import numpy as np
 
 import json
 
+import pathlib
+
 _CITATION = """
 @inproceedings{huang2016visual,
   title={Visual Storytelling},
@@ -40,7 +42,7 @@ We introduce the first dataset for sequential vision-to-language, and explore ho
 """
 
 
-_URL = "https://drive.google.com/uc?export=download&id=1Arc5vnthfeg6qEHpKU_--y6MKZd5DM78"
+_PATH = "dataset/vist/"
 
 _SENTENCES = "sentences"
 _SHUFFLED_SENTENCES = "shuffled_sentences"
@@ -70,8 +72,7 @@ class VISTOrdering(datasets.GeneratorBasedBuilder):
 
     def _split_generators(self, dl_manager):
         """Returns SplitGenerators."""
-        data_path = dl_manager.download_and_extract(_URL)
-
+        data_path = os.path.join(pathlib.Path().absolute(), _PATH)
         return [
             datasets.SplitGenerator(
                 name=datasets.Split.TRAIN,

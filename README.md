@@ -12,15 +12,59 @@ conda activate ordering
 pip install -r requirements.txt
 ```
 
-## Models weights
-
-All the models weights are available in a [Drive folder](https://drive.google.com/drive/folders/1pSLMX8CLJzoF4rUTSuFd2omPAjLLsBmQ?usp=sharing).
-Once the model folder downloaded, put the folder in the ``models/`` folder.
-
 ## Datasets
+
+### Download the datasets
+
+ArXiv, VIST, ROCStory and Wikipedia are stored on Google Drive.
+We can download the datasets using [``gdown``](https://pypi.org/project/gdown/).
+For CNN-DailyMail, there is no need to download the data (see after).
+
+```bash
+pip install gdown==3.12.2 
+```
+
+#### ArXiv
+
+```bash
+gdown https://drive.google.com/uc?id=0B-mnK8kniGAieXZtRmRzX2NSVDg
+tar -xf dataSet.tgz
+rm dataSet.tgz
+mv dataSet dataset/arxiv
+```
+
+#### VIST
+
+```bash
+gdown https://drive.google.com/uc?id=1Arc5vnthfeg6qEHpKU_--y6MKZd5DM78
+unzip vist.zip
+rm vist.zip
+mv vist dataset/vist
+```
+
+#### ROCStory
+
+```bash
+gdown https://drive.google.com/uc?id=1xXuy_7XWzgiwS4tYdclKizvmg_MZ-LLX
+unzip ROCStory.zip
+rm ROCStory.zip
+mv ROCStory dataset/rocstory
+```
+
+#### Wikipedia
+
+```bash
+gdown https://drive.google.com/uc?id=13scI5IOJgsL2mqDQVgaYgOfAr-37gZ3A
+unzip best_enwiki.zip
+rm best_enwiki.zip
+mv best_enwiki dataset/best_wikipedia
+```
+
+### Use the datasets
 
 We use the [``datasets``](https://github.com/huggingface/datasets) library from HuggingFace to load and access the datasets.
 The dataset custom loading script are in the ``dataset/`` folder.
+The loading script uses the downloaded datasets except for CNN-DailyMail where the loading script download the dataset itself.
 
 To load a dataset, run:
 
@@ -30,7 +74,10 @@ from datasets import load_dataset
 dataset = load_dataset("path/to/dataset/python/file")
 ```
 
-To directly access to the data without using ``datasets``, you can find the link to the data in the dataset loading scripts.
+## Models weights
+
+All the models weights are available in a [Drive folder](https://drive.google.com/drive/folders/1pSLMX8CLJzoF4rUTSuFd2omPAjLLsBmQ?usp=sharing).
+Once the model folder downloaded, put the folder in the ``models/`` folder.
 
 ## Train a model
 

@@ -24,6 +24,8 @@ import os
 import datasets
 import numpy as np
 
+import pathlib
+
 _CITATION = """
 @misc{chen2016neural,
     title={Neural Sentence Ordering},
@@ -38,7 +40,7 @@ _CITATION = """
 _DESCRIPTION = """
 Dataset for sentence ordering using text from arXiv."""
 
-_URL = "https://drive.google.com/uc?export=download&id=0B-mnK8kniGAieXZtRmRzX2NSVDg"
+_PATH = "dataset/arxiv/"
 
 _SENTENCES = "sentences"
 _SHUFFLED_SENTENCES = "shuffled_sentences"
@@ -68,8 +70,7 @@ class ArXivOrdering(datasets.GeneratorBasedBuilder):
 
     def _split_generators(self, dl_manager):
         """Returns SplitGenerators."""
-        data_path = dl_manager.download_and_extract(_URL)
-
+        data_path = os.path.join(pathlib.Path().absolute(), _PATH)
         return [
             datasets.SplitGenerator(
                 name=datasets.Split.TRAIN,
