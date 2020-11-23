@@ -73,7 +73,15 @@ dataset = load_dataset("path/to/dataset/python/file")
 
 ## Models
 
-> ``multi`` in the code or in a filename corresponds to the Ensemble pointer network in the paper.
+We present 3 models in the paper.
+
+| Model | Number of parameters | 
+| --- | --- |
+| BART + Simple Pointer | 140601600 |
+| BART + Deep Pointer | 144145152 |
+| BART + Ensemble Pointer | 140601612 | 
+
+> ``multi`` in the code or in a filename corresponds to the Ensemble Pointer in the paper.
 
 ### Models weights
 
@@ -109,6 +117,8 @@ df = ben.run()
 print(df)
 >> *dataframe containing the results*
 ```
+
+> results may vary a bit as the passages are randomly mixed
 
 ### Use the models
 
