@@ -105,7 +105,6 @@ class ROCOrdering(datasets.GeneratorBasedBuilder):
             csv_reader = csv.reader(f, delimiter=",")
             for i, elems in enumerate(csv_reader):
                 if len(elems) != 7:
-                    print(f"Example skipped: {len(elems)}")
                     continue
                 sentences = elems[-5:]
 

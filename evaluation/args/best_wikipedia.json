@@ -1,19 +1,6 @@
 {
     "scenarios": [
         {
-            "name": "Baseline",
-            "model_class": "ordering baseline",
-            "model_name": "models/baseline-best-wikipedia",
-            "tokenizer_name": "models/glove_tokenizer/best-wikipedia",
-            "init_kwargs": {
-                "ordering_parameters": {
-                    "num_beams": 1
-                }
-            },
-            "batch_size": 16,
-            "device": "cuda"
-        },
-        {
             "name": "Bart with Simple Pointer Head",
             "model_class": "ordering",
             "model_name": "models/bart-base-simple-best-wikipedia",

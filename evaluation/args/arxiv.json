@@ -1,19 +1,6 @@
 {
     "scenarios": [
         {
-            "name": "Baseline",
-            "model_class": "ordering baseline",
-            "model_name": "models/baseline-arxiv",
-            "tokenizer_name": "models/glove_tokenizer/arxiv",
-            "init_kwargs": {
-                "ordering_parameters": {
-                    "num_beams": 1
-                }
-            },
-            "batch_size": 16,
-            "device": "cuda"
-        },
-        {
             "name": "Bart with Simple Pointer Head",
             "model_class": "ordering multi",
             "model_name": "models/bart-base-simple-arxiv",

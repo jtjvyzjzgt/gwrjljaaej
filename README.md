@@ -28,36 +28,33 @@ pip install gdown==3.12.2
 
 ```bash
 gdown https://drive.google.com/uc?id=0B-mnK8kniGAieXZtRmRzX2NSVDg
-tar -xf dataSet.tgz
+mkdir dataset/arxiv
+tar -xf dataSet.tgz -C dataset/arxiv
 rm dataSet.tgz
-mv dataSet dataset/arxiv
 ```
 
 #### VIST
 
 ```bash
 gdown https://drive.google.com/uc?id=1Arc5vnthfeg6qEHpKU_--y6MKZd5DM78
-unzip vist.zip
+unzip vist.zip -d dataset/vist
 rm vist.zip
-mv vist dataset/vist
 ```
 
 #### ROCStory
 
 ```bash
 gdown https://drive.google.com/uc?id=1xXuy_7XWzgiwS4tYdclKizvmg_MZ-LLX
-unzip ROCStory.zip
+unzip ROCStory.zip -d dataset/rocstory
 rm ROCStory.zip
-mv ROCStory dataset/rocstory
 ```
 
 #### Wikipedia
 
 ```bash
-gdown https://drive.google.com/uc?id=13scI5IOJgsL2mqDQVgaYgOfAr-37gZ3A
-unzip best_enwiki.zip
-rm best_enwiki.zip
-mv best_enwiki dataset/best_wikipedia
+gdown https://drive.google.com/uc?id=1B05WiMNKYKjsi1TEweexu01GHElWwIDJ
+unzip best_wikipedia.zip -d dataset/best_wikipedia
+rm best_wikipedia.zip
 ```
 
 ### Use the datasets
@@ -74,12 +71,17 @@ from datasets import load_dataset
 dataset = load_dataset("path/to/dataset/python/file")
 ```
 
-## Models weights
+## Models
+
+> ``multi`` in the code or in a filename corresponds to the Ensemble pointer network in the paper.
+
+### Models weights
 
 All the models weights are available in a [Drive folder](https://drive.google.com/drive/folders/1pSLMX8CLJzoF4rUTSuFd2omPAjLLsBmQ?usp=sharing).
-Once the model folder downloaded, put the folder in the ``models/`` folder.
+Once the model folder downloaded, put the folder in the ``models/`` folder. 
+> The ``models/`` folder should contain one folder per model. Each model folder has to be named as in Drive and has to contain the model files: ``pytorch_model.bin``, ``config.json``, ``tokenizer_config.json``, etc.
 
-## Train a model
+### Train a model
 
 We create our models on top of the [``transformers``](https://github.com/huggingface/transformers) library from Huggingface and use the [Trainer](https://github.com/huggingface/transformers/blob/v3.4.0/src/transformers/trainer.py) to train our models.
 The configuration files for the models presented in the paper are in the ``training/args/`` folder.
@@ -90,11 +92,11 @@ To retrain a model, run:
 python run.py --model model --args_file path/to/json/file
 ```
 
-``model`` is the the model to train (``default`` for BART + simple PtrNet, ``deep`` for BART + deep PtrNet, ``multi`` for BART + multi PtrNet, or ``baseline`` for our baseline LSTM+Attention) and ``path/to/json/file`` is the path to the configuration file to use (note that the configuration file should correspond to ``model``).
+``model`` is the the model to train (``default`` for BART + simple PtrNet, ``deep`` for BART + deep PtrNet, ``multi`` for BART + Ensemble PtrNet, or ``baseline`` for our baseline LSTM+Attention) and ``path/to/json/file`` is the path to the configuration file to use (note that the configuration file should correspond to ``model``).
 
 To change the training parameters you can directly change the configuration file or create a new one.
 
-## Evaluate the models
+### Evaluate the models
 
 To evaluate the models on a dataset, we create configuration files in the ``evaluation/args/``.
 
@@ -108,7 +110,7 @@ print(df)
 >> *dataframe containing the results*
 ```
 
-## Use the models
+### Use the models
 
 Use the ``OrderingModel`` class from ``use.py``. 
 For example, to use BART + multi PtrNet trained on the Wikipedia dataset:
