@@ -136,3 +136,13 @@ PASSAGES_TO_ORDER = ["p3", "p2", "p1", "p4"]
 model.order(PASSAGES_TO_ORDER)
 >> ["p1", "p2", "p3", "p4"]
 ```
+
+### Training time
+
+We train our 3 models on a single GPU Quadro RTX 6000 for:
+
+- arXiv : 68 hours
+- VIST : 4 hours
+- ROCStory : 6 hours
+- Wikipedia : 25 hours
+- CNN-DailyMail : 14 hours
